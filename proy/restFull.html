@@ -1,12 +1,13 @@
 <html lang="en">
 <head>
-
-
+<!--Link al repositorio-->
+<!--https://github.com/rodrigoga799/GetServiceToTable.git--> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>Document</title>
+    <title>Rest api from JSON Page</title>
+    <!--Configuracion CSS de la tabla-->
     <style>
             table {
               font-family: arial, sans-serif;
@@ -28,21 +29,26 @@
     </style>
 </head>
 <body>
+    <!--Se carga angularJS para la ejecucion-->
+    <!--Se carga la libreria de la aplicacion y el controlador-->
         <script src="assets/js/angular.js"></script>
         <script src="appRest.js"></script>
-
+ <!--Se define la app con su respectivo controlador-->
         <div ng-app='appRest'  ng-controller ='controller'>
               
             <table>
                 <thead>
                     <tr>
                         <th ng-repeat="titulo in titulos">
+                            <!--Se genera de manera dinamica los titulos-->
                             {{ titulo | uppercase }}
                         </th>
                         
                     </tr>
                 </thead>
                 <tbody >
+                     <!--Se carga la libreria de la aplicacion y el controlador-->
+                     <!--Se carga la respuesta de la solicitud GET del server y se empieza a iterar para generar la tabla-->
                     <tr ng-repeat="fila in respuesta" >
                         <td align="center" ng-repeat="titulo in titulos">
                             
