@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Document</title>
+    <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            th{
+                background-color: cyan;
+            }
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 4px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+    </style>
+</head>
+<body>
+        <script src="assets/js/angular.js"></script>
+        <script src="appRest.js"></script>
+
+        <div ng-app='appRest'  ng-controller ='controller'>
+              
+            <table>
+                <thead>
+                    <tr>
+                        <th ng-repeat="titulo in titulos">
+                            {{ titulo | uppercase }}
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="fila in respuesta" >
+                        <td align="center" ng-repeat="titulo in titulos">
+                            
+                                <div ng-switch='titulo'>
+
+                                    <div ng-switch-when='address'>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Street</b></td>
+                                                    <td>{{fila[titulo]['street']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Suite</b></td>
+                                                    <td>{{fila[titulo]['suite']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>City</b></td>
+                                                    <td>{{fila[titulo]['city']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Zipcode</b></td>
+                                                    <td>{{fila[titulo]['zipcode']}}
+                                                </tr>
+
+                                          
+                                            
+                                                <tr>
+                                                    <td colspan="2"><b>Geo</b></td>
+                                                </tr>
+                                          
+                                          
+                                                <tr>
+                                                    <td><b>Latitude</b></td>
+                                                    <td>{{fila[titulo]['geo']['lat']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Longitude</b></td>
+                                                    <td>{{fila[titulo]['geo']['lng']}}
+                                                </tr>  
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div ng-switch-when='company'>
+                                        <table>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td><b>Name</b></td>
+                                                    <td>{{fila[titulo]['name']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>CatchPhrase</b></td>
+                                                    <td>{{fila[titulo]['catchPhrase']}}
+                                                </tr>
+                                                <tr>
+                                                    <td><b>Bs</b></td>
+                                                    <td>{{fila[titulo]['bs']}}
+                                                </tr>
+                                           
+
+                                            </tbody>
+
+
+
+                                        </table>
+                                        </div>
+                                    <div ng-switch-default>
+                                            {{fila[titulo]}}
+                                    </div>
+
+                                </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+            
+    
+</body>
+</html>
