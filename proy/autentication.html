@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<!--Link al repositorio-->
+<!--https://github.com/rodrigoga799/GetServiceToTable.git--> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Rest api from Login Page</title>
+    <!--Configuracion CSS de la tabla-->
+
+</head>
+<body>
+    <!--Se carga angularJS para la ejecucion-->
+    <!--Se carga la libreria de la aplicacion y el controlador-->
+        <script src="assets/js/angular.js"></script>
+
+ <!--Se define la app con su respectivo controlador-->
+   
+    
+            
+    <div ng-app='appRest'  ng-controller ='controller'>
+        
+
+    </div>
+
+
+
+
+    <script>
+        var app = angular.module("appRest",[]);
+        var respuesta = [];
+        var respuesta2 = [];
+
+    app.controller("controller",function($scope,$http)
+    {
+    //Se hace la peticion rest
+
+
+        $http.post("https://reqres.in/api/login", {"email": "eve.holt@reqres.in","password": "cityslicka"} )
+        .then(function(response)
+        {
+            //Se revisa si el status de la peticion fue exitosa o fallo
+            if (response["status"] != 200)
+            {   $scope.respuesta2 = "Error";
+                respuesta2 = response;
+                console.log(respuesta2);    
+            }
+            else
+            {
+                //Se extrae la data de la pagina indicada
+                
+                $scope.respuesta2 = response.data;
+                $scope.token = response.data.token;
+
+                respuesta2 = response; 
+                 
+                //window.location.href = "http://www.google.com";    
+            }
+            
+        
+        },
+        function (respError)
+        {
+            console.log(respError);
+
+            
+        });
+
+    });
+    </script>
+</body>
+</html>
